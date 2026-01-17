@@ -5335,5 +5335,16 @@
         ]
       }
     ]
+  },
+  {
+    "type": "effect_type",
+    "id": "effect_aikido_pacifism_trance",
+    "name": [ "Aikido Harmony" ],
+    "desc": [
+      "You have meditated upon your long practice of the art of Aikido; now your body moves in harmony with outside forces."
+    ],
+    "rating": "good",
+    "apply_message": "Your mind KNOWS the violence around your body, but it is your spirit's understanding of Harmony that moves you now.",
+    "flags": [ "AIKIDO_MASTER_TRANCE" ]
   }
 ]

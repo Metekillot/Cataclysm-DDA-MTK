@@ -55,12 +55,31 @@
       {
         "id": "buff_aikido_static3",
         "name": "Advanced Aikido",
-        "description": "An advanced Aikido practitioner can protect themselves even against multiple opponents.\n\n+1 dodge attempt, and one dodge each turn will not consume stamina.",
+        "description": "An advanced Aikido practitioner has understood not only the physical aspect of the art, but also the spiritual. +1 dodge attempt, and they can meditate for thirty turns to enter a trance. Your attacks do no damage, but all combat maneuvers are more effective and less costly.",
         "unarmed_allowed": true,
         "melee_allowed": false,
         "skill_requirements": [ { "name": "unarmed", "level": 6 } ],
-        "bonus_dodges": 1,
-        "free_dodges": 1
+        "bonus_dodges": 1
+      },
+      {
+        "id": "buff_aikido_gentle",
+        "name": "Gentle Harmony",
+        "description": "Your body moves in a trance, solely attuned with the harmonious spirit of Aikido. 0% damage, *0.5 moves per attack, +2 dodge & block attempts, *2 dodge/block/to-hit effectiveness",
+        "unarmed_allowed": true,
+        "melee_allowed": false,
+        "skill_requirements": [ { "name": "unarmed", "level": 6 } ],
+        "required_char_flags": [ "AIKIDO_MASTER_TRANCE" ],
+        "mult_bonuses": [
+          { "stat": "movecost", "scale": 0.5 },
+          { "stat": "hit", "scale": 2.0 },
+          { "stat": "dodge", "scale": 2.0 },
+          { "stat": "block", "scale": 2.0 },
+          { "stat": "damage", "type": "bash", "scale": 0.0 },
+          { "stat": "damage", "type": "cut", "scale": 0.0 },
+          { "stat": "damage", "type": "stab", "scale": 0.0 }
+        ],
+        "bonus_dodges": 2,
+        "bonus_blocks": 2
       }
     ],
     "onblock_buffs": [
@@ -84,6 +103,24 @@
         "melee_allowed": false,
         "buff_duration": 1,
         "mult_bonuses": [ { "stat": "movecost", "scale": 0.5 } ]
+      }
+    ],
+    "onpause_buffs": [
+      {
+        "id": "buff_aikido_onpause",
+        "name": "Gentle Breath",
+        "description": "Meditate in place for thirty turns to enter harmony with outside forces. Attacks do no damage, but dodges, blocks, and moves per attack become vastly more effective and less costly.",
+        "unarmed_allowed": true,
+        "melee_allowed": false,
+        "max_stacks": 31,
+        "buff_duration": 31
+      }
+    ],
+    "onpause_eocs": [
+      {
+        "id": "EOC_AIKIDO_DID_ENTER_TRANCE",
+        "condition": { "u_has_effect": "mabuff:buff_aikido_onpause", "intensity": 30 },
+        "effect": [ { "u_add_effect": "effect_aikido_pacifism_trance", "duration": "1 day" } ]
       }
     ],
     "techniques": [
